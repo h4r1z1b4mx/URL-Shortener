@@ -41,3 +41,33 @@ export const shortenUrl = async (req, res, next) => {
         next(err);
     }
 };
+
+
+export const redirectToLongUrl = async (req, res, next) => {
+    try {
+        const {shortUrlKey} = req.params;
+        shortUrlKey.trim();
+
+        if (!shortUrlKey) {
+            throw new AppError("Short URL is required", 400);
+        }
+
+        if (!shortUrlKey.length !== 7) {
+            throw new AppError("Incorrect Short URL", 400);
+        }
+
+        const url = URL.findOne({shortUrlKey}).lean().exec();
+
+        if (!url || !url.originalUrl) {
+            throw new AppError(`Short URL Key not found: ${shortUrlKey} `, 404);
+        }
+
+        if (url.expiresAt < new Date()) {
+            throw new AppError("Short URL has expired", 410);
+        }   
+
+        res.redirect(301, url.originalUrl);
+    } catch(err) { 
+        next(err);
+    }
+}

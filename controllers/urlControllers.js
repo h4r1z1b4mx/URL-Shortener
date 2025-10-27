@@ -1,5 +1,6 @@
 import { customAlphabet } from "nanoid";
 import isURL from "validator/lib/isURL";
+import URL from "../models/URL";
 
 
 
@@ -21,9 +22,22 @@ export const shortenUrl = async (req, res, next) => {
             throw new AppError("Invalid URL", 400);
         }
 
+        const url = await URL.findOneAndUpdate(
+            {originalUrl}, 
+            {$setOnInsert: {originalUrl, shortUrlKey: nonoid()}},
+            {new: true, upsert: true, setDefaultsOnInsert: true, lean: true }
+        ).exec();
 
+        const shortUrl = `${BASE_URL}/api/v1/${url.shortUrlKey}`;
+
+        res.status(200).json({
+            message:"URL shortened successfully",
+            originalUrl, 
+            shortUrl, 
+            expiresIn: Math.floor(url.expiresAt - new Date())
+        });
 
     } catch(err) {
         next(err);
     }
-}
+};

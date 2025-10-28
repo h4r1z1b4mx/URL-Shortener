@@ -1,11 +1,11 @@
 import { Router } from "express";
-import { redirectToLongUrl, shortenUrl } from "../controllers/urlControllers";
+import { getUrlStats, redirectToLongUrl, shortenUrl } from "../controllers/urlControllers";
 
 const router = Router();
 
 
 router.post("/shorten", shortenUrl);
 router.get("/:shortUrlKey", redirectToLongUrl);
-router.get("/stats/:shortUrlKey", );
+router.get("/stats/:shortUrlKey",getUrlStats);
 
-export default router;0
+export default router;

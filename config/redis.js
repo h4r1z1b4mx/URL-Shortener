@@ -44,3 +44,6 @@ const redisB = new RedisClient(
     process.env.REDIS_PASSWORD2 
 ).client;
 
+
+
+export {redisA, redisB};

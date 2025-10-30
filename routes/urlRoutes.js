@@ -1,5 +1,9 @@
 import { Router } from "express";
-import { getUrlStats, redirectToLongUrl, shortenUrl } from "../controllers/urlControllers";
+import { 
+    getUrlStats, 
+    redirectToLongUrl, 
+    shortenUrl 
+} from "../controllers/urlControllers.js";
 
 const router = Router();
 

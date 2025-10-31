@@ -95,7 +95,7 @@ nodeCron.schedule("*/10 * * * *", async () => {
     try {
         console.log("Running scheduled task to perform bulk write");
         await main();
-        console.log();
+        console.log("Scheduled task completed");
     } catch (err) {
         console.error("Error in scheduled task: ", err);
     } finally { 

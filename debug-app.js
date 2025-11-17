@@ -1,0 +1,14 @@
+console.log("1. Starting...");
+import dotenv from "dotenv";
+console.log("2. Imported dotenv");
+import express, {json, urlencoded} from "express";
+console.log("3. Imported express");
+import mongoose from "mongoose";
+console.log("4. Imported mongoose");
+import urlRoutes from "./routes/urlRoutes.js";
+console.log("5. Imported urlRoutes");
+import { logger, morganMiddleware } from "./utils/logger.js";
+console.log("6. Imported logger");
+import { shortenLimiter } from "./config/rate-limiter.js";
+console.log("7. Imported shortenLimiter");
+console.log("All imports complete!");

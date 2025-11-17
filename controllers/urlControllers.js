@@ -1,9 +1,9 @@
 import { customAlphabet } from "nanoid";
-import isURL from "validator/lib/isURL";
-import URL from "../models/URL";
-import { AppError } from "../utils/errorHandlers";
-import { hashRing } from "../utils/consistentHash";
-import { logger } from "../utils/logger";
+import isURL from "validator/lib/isURL.js";
+import URL from "../models/URL.js";
+import { AppError } from "../utils/errodHandlers.js";
+import { hashRing } from "../utils/consistentHash.js";
+import { logger } from "../utils/logger.js";
 import { getCacheDetails } from '../utils/cacheCalculation.js'
 
 

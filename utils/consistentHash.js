@@ -1,5 +1,5 @@
 import md5 from "md5";
-import { redisA, redisB } from "../config/redis";
+import { redisA, redisB } from "../config/redis.js";
 
 class ConsistentHash {
     constructor (servers, options ={}) {

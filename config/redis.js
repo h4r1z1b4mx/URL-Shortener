@@ -33,17 +33,19 @@ class RedisClient{
 
 
 const redisA = new RedisClient(
-    process.env.REDIS_HOST1, 
-    process.env.REDIS_PORT1,
-    process.env.REDIS_PASSWORD1 
+    process.env.REDIS_HOST1,
+    parseInt(process.env.REDIS_PORT1) || 6379,
+    process.env.REDIS_PASSWORD1
 ).client;
 
 const redisB = new RedisClient(
-    process.env.REDIS_HOST2, 
-    process.env.REDIS_PORT2,
-    process.env.REDIS_PASSWORD2 
+    process.env.REDIS_HOST2,
+    parseInt(process.env.REDIS_PORT2) || 6380,
+    process.env.REDIS_PASSWORD2
 ).client;
 
-
+// Connect both Redis clients
+redisA.connect().catch(console.error);
+redisB.connect().catch(console.error);
 
 export {redisA, redisB};
